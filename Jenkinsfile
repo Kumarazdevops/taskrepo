@@ -1,4 +1,4 @@
-pipeline {
+ pipeline {
   agent any
 
   stages{
@@ -11,6 +11,11 @@ pipeline {
       steps{
         bat 'docker build -t myimage .'
       }
+    }
+    stage('Container'){
+        steps{
+            bat "docker run -d --name testcont -p 8084:80 myimage"
+        }
     }
   }
 }
